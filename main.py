@@ -1,10 +1,23 @@
-import sys, os, folium
+import sys, os, folium, json
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QMainWindow, QPushButton, QLineEdit
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineSettings
 
+with open("mapMarkers.json", "r") as file:
+    jsonData = json.load(file)
+
 m = folium.Map(location=[35.86948392517847, -78.60383523380236], zoom_start=16)
+
+for i in jsonData["noZones"]:
+    polygon_coords = jsonData["noZones"][i]
+    folium.Polygon(
+        locations=polygon_coords,
+        color='red',
+        fill=True,
+        fill_color='red'
+    ).add_to(m)
+
 m.save("map.html")
 
 class MapWindow(QMainWindow):
