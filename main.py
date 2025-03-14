@@ -3,7 +3,6 @@ from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QMa
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineSettings
-from shapely.geometry import Polygon
 from router import create_route
 
 with open("mapMarkers.json", "r") as file:
